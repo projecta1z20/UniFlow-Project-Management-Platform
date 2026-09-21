@@ -1,0 +1,14 @@
+*.db
+*.py[cod]
+.states
+assets/external/
+.web
+__pycache__/
+.web/
+.states/
+.pytest_cache/
+.git/
+.venv/
+site-packages/
+node_modules/
+assets/xy/
