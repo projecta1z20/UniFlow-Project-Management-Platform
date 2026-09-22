@@ -436,13 +436,12 @@ class StudioState(rx.State):
             self.signed_in = True
             yield StudioState.load
             yield rx.redirect("/studio/dashboard")
+        except ValueError as e:
+            self.error = str(e)
+            self._login_after = clock.time() + 2
         except Exception as e:
             logging.exception(f"Error: {e}")
-            self.error = (
-                str(e)
-                if isinstance(e, ValueError)
-                else "Unable to sign in. Please try again."
-            )
+            self.error = "Unable to sign in. Please try again."
             self._login_after = clock.time() + 2
         finally:
             self.busy = False
